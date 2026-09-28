@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="canvas:aspect-ratio" content="375:812">
+<title>2026 年度职工总结 · 成都市新津区中医医院</title>
+<style>
+  /* ===== Seed Tokens (TCM Warm Palette) ===== */
+  :root {
+    --seed-bg: #F5F0E8;
+    --seed-fg: #3D2B1F;
+    --seed-primary: #C4956A;
+    --seed-accent: #B83A2D;
+    --seed-surface: rgba(255,255,255,0.85);
+    --seed-radius: 16px;
+    --big-number-size: 68px;
+
+    /* Page gradient tokens — warm ink wash tones (derived from seed) */
+    --cover-grad-start: var(--seed-bg);
+    --cover-grad-mid: color-mix(in srgb, var(--seed-bg) 85%, var(--seed-primary) 15%);
+    --cover-grad-end: color-mix(in srgb, var(--seed-bg) 75%, var(--seed-primary) 25%);
+    --outpatient-grad-start: var(--seed-bg);
+    --outpatient-grad-mid: color-mix(in srgb, var(--seed-bg) 88%, var(--seed-primary) 12%);
+    --outpatient-grad-end: color-mix(in srgb, var(--seed-bg) 78%, var(--seed-primary) 22%);
+    --surgery-grad-start: color-mix(in srgb, var(--seed-bg) 95%, var(--seed-primary) 5%);
+    --surgery-grad-mid: color-mix(in srgb, var(--seed-bg) 85%, var(--seed-primary) 15%);
+    --surgery-grad-end: color-mix(in srgb, var(--seed-bg) 75%, var(--seed-primary) 25%);
+    --beds-grad-start: color-mix(in srgb, var(--seed-bg) 92%, var(--seed-primary) 8%);
+    --beds-grad-mid: color-mix(in srgb, var(--seed-bg) 82%, var(--seed-primary) 18%);
+    --beds-grad-end: color-mix(in srgb, var(--seed-bg) 72%, var(--seed-primary) 28%);
+    --duty-grad-start: color-mix(in srgb, var(--seed-bg) 90%, var(--seed-primary) 10%);
+    --duty-grad-mid: color-mix(in srgb, var(--seed-bg) 80%, var(--seed-primary) 20%);
+    --duty-grad-end: color-mix(in srgb, var(--seed-bg) 70%, var(--seed-primary) 30%);
+    --ending-grad-start: var(--seed-bg);
+    --ending-grad-mid: color-mix(in srgb, var(--seed-bg) 85%, var(--seed-primary) 15%);
+    --ending-grad-end: color-mix(in srgb, var(--seed-bg) 75%, var(--seed-primary) 25%);
+
+    /* TCM color palette (seed-derived) */
+    --color-gold: var(--seed-primary);
+    --color-gold-light: color-mix(in srgb, var(--seed-primary) 75%, #fff 25%);
+    --color-gold-dark: color-mix(in srgb, var(--seed-primary) 80%, #000 20%);
+    --color-ink: var(--seed-fg);
+    --color-ink-light: color-mix(in srgb, var(--seed-fg) 75%, #fff 25%);
+    --color-ink-faint: color-mix(in srgb, var(--seed-fg) 12%, transparent);
+    --color-warm-red: var(--seed-accent);
+    --color-warm-red-light: color-mix(in srgb, var(--seed-accent) 75%, #fff 25%);
+    --color-cream: color-mix(in srgb, var(--seed-bg) 95%, #fff 5%);
+    --color-cream-dark: color-mix(in srgb, var(--seed-bg) 85%, var(--seed-primary) 15%);
+    --color-sage: #7A8B6F;
+    --color-sage-light: #9BA890;
+    --color-jade: #5B8C7A;
+    --color-jade-light: #7BA896;
+    --color-white: #ffffff;
+    --color-text-primary: var(--seed-fg);
+    --color-text-secondary: color-mix(in srgb, var(--seed-fg) 70%, var(--seed-bg) 30%);
+    --color-text-tertiary: color-mix(in srgb, var(--seed-fg) 50%, var(--seed-bg) 50%);
+    --color-text-placeholder: color-mix(in srgb, var(--seed-fg) 35%, var(--seed-bg) 65%);
+
+    /* Bar gradient tokens */
+    --bar-gold: linear-gradient(90deg, var(--color-gold-dark), var(--color-gold));
+    --bar-gold-light: linear-gradient(90deg, var(--color-gold), var(--color-gold-light));
+    --bar-sage: linear-gradient(90deg, var(--color-sage), var(--color-sage-light));
+    --bar-jade: linear-gradient(90deg, var(--color-jade), var(--color-jade-light));
+    --bar-ink: linear-gradient(90deg, var(--color-ink-light), var(--color-ink));
+
+    /* Derived */
+    --page-bg: var(--seed-bg);
+    --card-bg: var(--seed-surface);
+    --card-radius: var(--seed-radius);
+    --text-primary: var(--color-text-primary);
+    --text-secondary: var(--color-text-secondary);
+    --text-tertiary: var(--color-text-tertiary);
+    --accent-glow: var(--seed-primary);
+    --primary-glow: var(--seed-primary);
+
+    /* Surface tokens — warm light theme */
+    --surface-card: #FFFFFF;
+    --surface-card-border: #C4956A;
+    --surface-card-shadow: color-mix(in srgb, var(--seed-fg) 18%, transparent);
+    --surface-card-hover: #FFFFFF;
+    --surface-stat: #FDF8F0;
+    --surface-stat-border: #C4956A;
+    --surface-bar-track: color-mix(in srgb, var(--seed-fg) 8%, transparent);
+    --surface-cal-cell: color-mix(in srgb, var(--seed-primary) 12%, transparent);
+    --surface-indicator: color-mix(in srgb, var(--seed-fg) 15%, transparent);
+    --surface-indicator-active: var(--seed-primary);
+    --surface-divider: #C4956A;
+    --surface-seal: var(--seed-accent);
+    --ring-border: #C4956A;
+  }
+
+  /* ===== Reset & Base ===== */
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  }
+
+  body {
+    font-family: "PingFang SC", "Noto Sans SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: var(--text-primary);
+    background: var(--page-bg);
+    overflow-x: hidden;
+  }
+
+  /* ===== Page Container ===== */
+  .page {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100dvh;
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 24px;
+  }
+
+  /* ===== Ink Wash Background ===== */
+  .ink-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .ink-bg svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ===== Page Backgrounds ===== */
+  .page-cover {
+    background: linear-gradient(170deg, var(--cover-grad-start) 0%, var(--cover-grad-mid) 40%, var(--cover-grad-end) 100%);
+  }
+  .page-outpatient {
+    background: linear-gradient(170deg, var(--outpatient-grad-start) 0%, var(--outpatient-grad-mid) 50%, var(--outpatient-grad-end) 100%);
+  }
+  .page-surgery {
+    background: linear-gradient(170deg, var(--surgery-grad-start) 0%, var(--surgery-grad-mid) 50%, var(--surgery-grad-end) 100%);
+  }
+  .page-beds {
+    background: linear-gradient(170deg, var(--beds-grad-start) 0%, var(--beds-grad-mid) 50%, var(--beds-grad-end) 100%);
+  }
+  .page-duty {
+    background: linear-gradient(170deg, var(--duty-grad-start) 0%, var(--duty-grad-mid) 50%, var(--duty-grad-end) 100%);
+  }
+  .page-ending {
+    background: linear-gradient(170deg, var(--ending-grad-start) 0%, var(--ending-grad-mid) 50%, var(--ending-grad-end) 100%);
+  }
+
+  /* ===== Floating Ink Particles ===== */
+  .particles {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.08;
+    animation: floatInk linear infinite;
+  }
+  @keyframes floatInk {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    10% { opacity: 0.08; }
+    90% { opacity: 0.08; }
+    100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+  }
+
+  /* ===== Warm Card ===== */
+  .card {
+    background: var(--surface-card);
+    border: 2px solid var(--surface-card-border);
+    border-radius: var(--card-radius);
+    padding: 32px 24px;
+    width: 100%;
+    max-width: 340px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 24px var(--surface-card-shadow), 0 1px 3px color-mix(in srgb, var(--seed-fg) 8%, transparent), 0 0 0 1px color-mix(in srgb, var(--color-white) 60%, transparent) inset;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--color-gold-light), transparent);
+  }
+
+  /* ===== Seal Stamp ===== */
+  .seal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 2px solid var(--surface-seal);
+    border-radius: 4px;
+    color: var(--surface-seal);
+    font-size: 14px;
+    font-weight: 700;
+    font-family: "STSong", "SimSun", "Noto Serif SC", serif;
+    letter-spacing: 2px;
+    line-height: 1;
+    transform: rotate(-5deg);
+    opacity: 0.85;
+  }
+
+  /* ===== Cover Page ===== */
+  .cover-hospital-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .cover-logo-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .cover-logo-icon svg {
+    width: 22px;
+    height: 22px;
+  }
+  .cover-hospital-name {
+    font-size: 15px;
+    color: var(--color-ink);
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .cover-hospital-en {
+    font-size: 10px;
+    color: var(--color-text-tertiary);
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+  .cover-year {
+    font-size: 13px;
+    letter-spacing: 8px;
+    color: var(--color-text-tertiary);
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+  .cover-title {
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.4;
+    text-align: center;
+    margin-bottom: 8px;
+    color: var(--color-ink);
+    font-family: "STSong", "SimSun", "Noto Serif SC", serif;
+  }
+  .cover-title .accent {
+    color: var(--color-gold-dark);
+  }
+  .cover-subtitle {
+    font-size: 15px;
+    color: var(--color-text-secondary);
+    text-align: center;
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+  .cover-divider {
+    width: 48px;
+    height: 1px;
+    background: var(--surface-divider);
+    margin: 0 auto 24px;
+  }
+  .cover-name {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--color-ink);
+    margin-bottom: 6px;
+    text-align: center;
+    font-family: "STSong", "SimSun", "Noto Serif SC", serif;
+  }
+  .cover-dept {
+    font-size: 14px;
+    color: var(--color-text-tertiary);
+    margin-bottom: 48px;
+  }
+  .cover-start {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--color-text-tertiary);
+    font-size: 13px;
+    animation: breathe 2.5s ease-in-out infinite;
+  }
+  .cover-start .arrow {
+    width: 20px;
+    height: 20px;
+    border-right: 1.5px solid var(--color-text-tertiary);
+    border-bottom: 1.5px solid var(--color-text-tertiary);
+    transform: rotate(45deg);
+    animation: bounceDown 2.5s ease-in-out infinite;
+  }
+  @keyframes breathe { 0%,100%{opacity:.35} 50%{opacity:.85} }
+  @keyframes bounceDown { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
+
+  /* ===== Data Pages Common ===== */
+  .page-label {
+    font-size: 11px;
+    letter-spacing: 6px;
+    color: var(--color-text-tertiary);
+    margin-bottom: 8px;
+    font-weight: 400;
+  }
+  .page-heading {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    line-height: 1.3;
+    color: var(--color-ink);
+    font-family: "STSong", "SimSun", "Noto Serif SC", serif;
+  }
+  .page-desc {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    margin-bottom: 28px;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 300px;
+  }
+  .big-number {
+    font-size: var(--big-number-size);
+    font-weight: 800;
+    line-height: 1;
+    margin-bottom: 4px;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -2px;
+    color: var(--color-ink);
+  }
+  .big-unit {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--color-text-tertiary);
+    margin-left: 4px;
+  }
+  .data-compare {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .data-compare .up { color: var(--color-jade); font-weight: 600; }
+  .data-compare .down { color: var(--color-warm-red); font-weight: 600; }
+
+  /* ===== Stat Grid ===== */
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    width: 100%;
+    max-width: 340px;
+  }
+  .stat-item {
+    background: var(--surface-stat);
+    border-radius: 12px;
+    padding: 22px 16px;
+    border: 2px solid var(--surface-stat-border);
+    box-shadow: 0 2px 8px color-mix(in srgb, var(--seed-fg) 5%, transparent);
+  }
+  .stat-value {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 4px;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-ink);
+  }
+  .stat-label {
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    letter-spacing: 1px;
+  }
+
+  /* ===== Highlight Bar ===== */
+  .highlight-bar {
+    width: 100%;
+    max-width: 340px;
+    margin-top: 20px;
+  }
+  .bar-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .bar-label {
+    font-size: 13px;
+    color: var(--color-text-secondary);
+    min-width: 64px;
+    flex-shrink: 0;
+  }
+  .bar-track {
+    flex: 1;
+    height: 8px;
+    background: var(--surface-bar-track);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 4px;
+    transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+    width: 0;
+  }
+  .bar-fill.animated { /* width set by JS */ }
+  .bar-value {
+    font-size: 13px;
+    font-weight: 600;
+    min-width: 36px;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-ink);
+  }
+
+  /* ===== Calendar Heatmap ===== */
+  .calendar-wrap {
+    width: 100%;
+    max-width: 340px;
+  }
+  .calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 4px;
+    margin-bottom: 12px;
+  }
+  .cal-cell {
+    aspect-ratio: 1;
+    border-radius: 3px;
+    background: var(--surface-cal-cell);
+    transition: background 0.3s;
+  }
+  .cal-month-labels {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+  .cal-month {
+    font-size: 10px;
+    color: var(--color-text-tertiary);
+    text-align: center;
+  }
+
+  /* ===== Ending Page ===== */
+  .ending-badge {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px color-mix(in srgb, var(--color-gold) 25%, transparent);
+  }
+  .ending-badge svg {
+    width: 32px;
+    height: 32px;
+  }
+  .ending-quote {
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 300px;
+    margin-bottom: 16px;
+    color: var(--color-ink);
+    font-family: "STSong", "SimSun", "Noto Serif SC", serif;
+  }
+  .ending-sub {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    text-align: center;
+    margin-bottom: 36px;
+    line-height: 1.6;
+  }
+  .ending-share {
+    margin-top: 28px;
+    padding: 14px 40px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--color-gold), var(--color-gold-dark));
+    border: none;
+    color: var(--color-white);
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 4px 16px color-mix(in srgb, var(--color-gold) 30%, transparent);
+    letter-spacing: 2px;
+  }
+  .ending-share:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px color-mix(in srgb, var(--color-gold) 40%, transparent);
+  }
+  .ending-footer {
+    margin-top: 20px;
+    font-size: 12px;
+    color: var(--color-text-tertiary);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .ending-footer::before,
+  .ending-footer::after {
+    content: '';
+    width: 32px;
+    height: 1px;
+    background: var(--surface-divider);
+  }
+
+  /* ===== Page Indicator ===== */
+  .page-indicator {
+    position: fixed;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 100;
+  }
+  .indicator-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--surface-indicator);
+    transition: all 0.4s;
+  }
+  .indicator-dot.active {
+    height: 20px;
+    border-radius: 3px;
+    background: var(--surface-indicator-active);
+  }
+
+  /* ===== Entrance Animations ===== */
+  .anim-item {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+                transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .anim-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .anim-item:nth-child(2) { transition-delay: 0.1s; }
+  .anim-item:nth-child(3) { transition-delay: 0.2s; }
+  .anim-item:nth-child(4) { transition-delay: 0.3s; }
+  .anim-item:nth-child(5) { transition-delay: 0.4s; }
+  .anim-item:nth-child(6) { transition-delay: 0.5s; }
+
+  /* ===== Decorative Elements ===== */
+  .deco-cloud {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.06;
+  }
+  .deco-mountain {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    opacity: 0.04;
+  }
+  .deco-corner {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0.08;
+  }
+
+  /* ===== Emotional Text ===== */
+  .emotion-text {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    text-align: center;
+    max-width: 280px;
+    margin-top: 28px;
+    font-family: "STSong", "SimSun", "Noto Serif SC", serif;
+    font-style: italic;
+    padding-top: 20px;
+    border-top: 2px solid var(--surface-divider);
+  }
+
+  /* ===== Icon Badge ===== */
+  .icon-badge {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    background: linear-gradient(135deg, color-mix(in srgb, var(--color-gold) 12%, transparent), color-mix(in srgb, var(--color-gold) 6%, transparent));
+    border: 1px solid color-mix(in srgb, var(--color-gold) 15%, transparent);
+  }
+  .icon-badge svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--color-gold-dark);
+  }
+
+  /* ===== Number animation ===== */
+  .count-up {
+    display: inline-block;
+  }
+
+  /* ===== Divider ===== */
+  .divider {
+    width: 36px;
+    height: 1px;
+    background: var(--surface-divider);
+    margin: 16px 0;
+  }
+
+  /* ===== Keyword Tags ===== */
+  .keyword-tag {
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 13px;
+    border: 1px solid;
+    display: inline-block;
+  }
+  .keyword-tag--gold {
+    background: color-mix(in srgb, var(--color-gold) 10%, transparent);
+    color: var(--color-gold-dark);
+    border-color: color-mix(in srgb, var(--color-gold) 20%, transparent);
+  }
+  .keyword-tag--ink {
+    background: color-mix(in srgb, var(--color-ink) 6%, transparent);
+    color: var(--color-ink-light);
+    border-color: color-mix(in srgb, var(--color-ink) 12%, transparent);
+  }
+  .keyword-tag--red {
+    background: color-mix(in srgb, var(--color-warm-red) 8%, transparent);
+    color: var(--color-warm-red);
+    border-color: color-mix(in srgb, var(--color-warm-red) 15%, transparent);
+  }
+  .keyword-tag--sage {
+    background: color-mix(in srgb, var(--color-sage) 10%, transparent);
+    color: var(--color-sage);
+    border-color: color-mix(in srgb, var(--color-sage) 20%, transparent);
+  }
+</style>
+</head>
+<body>
+
+<!-- Page Indicator -->
+<nav class="page-indicator" id="pageIndicator" data-component="page-indicator" aria-label="页面导航">
+  <div class="indicator-dot active" data-page="0"></div>
+  <div class="indicator-dot" data-page="1"></div>
+  <div class="indicator-dot" data-page="2"></div>
+  <div class="indicator-dot" data-page="3"></div>
+  <div class="indicator-dot" data-page="4"></div>
+  <div class="indicator-dot" data-page="5"></div>
+</nav>
+
+<main data-component="annual-summary">
+
+<!-- ===== PAGE 1: Cover ===== -->
+<section class="page page-cover" data-page="0" data-component="cover-page">
+  <!-- Ink wash mountain decoration -->
+  <svg class="deco-mountain" viewBox="0 0 375 200" preserveAspectRatio="none" style="height:180px;bottom:0;">
+    <path d="M0,200 Q30,160 60,140 Q90,120 120,130 Q150,100 180,80 Q210,60 240,90 Q270,70 300,100 Q330,120 375,110 L375,200 Z" fill="var(--color-gold)"/>
+    <path d="M0,200 Q50,170 80,155 Q110,140 140,150 Q170,130 200,120 Q230,110 260,130 Q290,115 320,140 Q350,150 375,145 L375,200 Z" fill="var(--color-gold-dark)" opacity="0.5"/>
+  </svg>
+  <!-- Cloud decoration top-right -->
+  <svg class="deco-cloud" style="top:20px;right:-20px;width:160px;height:100px;" viewBox="0 0 160 100">
+    <path d="M20,60 Q30,30 60,35 Q80,10 110,25 Q140,15 145,40 Q160,50 140,60 Q130,75 100,70 Q70,80 40,70 Q10,75 20,60Z" fill="var(--color-gold)"/>
+  </svg>
+  <!-- Corner pattern top-left -->
+  <svg class="deco-corner" style="top:16px;left:16px;width:48px;height:48px;" viewBox="0 0 48 48">
+    <path d="M0,24 Q12,12 24,0" stroke="var(--color-gold)" stroke-width="1" fill="none"/>
+    <path d="M0,32 Q16,16 32,0" stroke="var(--color-gold)" stroke-width="0.5" fill="none"/>
+  </svg>
+
+  <div class="particles" id="particles-cover"></div>
+
+  <div class="anim-item cover-hospital-logo">
+    <div class="cover-logo-icon">
+      <svg viewBox="0 0 24 24" fill="none" style="stroke:var(--color-white)" stroke-width="1.5">
+        <circle cx="12" cy="12" r="10"/>
+        <path d="M12 2C12 2 8 6 8 12C8 18 12 22 12 22"/>
+        <path d="M12 2C12 2 16 6 16 12C16 18 12 22 12 22"/>
+        <line x1="2" y1="12" x2="22" y2="12"/>
+      </svg>
+    </div>
+    <div>
+      <div class="cover-hospital-name">成都市新津区中医医院</div>
+      <div class="cover-hospital-en">XINJIN HOSPITAL OF TRADITIONAL CHINESE MEDICINE</div>
+    </div>
+  </div>
+
+  <div class="anim-item cover-year">二 零 二 六 年 度</div>
+  <div class="anim-item cover-title">你的年度<br><span class="accent">工作画像</span></div>
+  <div class="anim-item cover-subtitle">每一份坚守，都值得被看见</div>
+  <div class="anim-item">
+    <div class="cover-divider"></div>
+  </div>
+  <div class="anim-item cover-name">张明远 医生</div>
+  <div class="anim-item cover-dept">心血管内科 · 主治医师</div>
+  <div class="anim-item cover-start">
+    <span>向上滑动开启</span>
+    <div class="arrow"></div>
+  </div>
+</section>
+
+<!-- ===== PAGE 2: Outpatient ===== -->
+<section class="page page-outpatient" data-page="1" data-component="outpatient-page">
+  <!-- Cloud decoration -->
+  <svg class="deco-cloud" style="top:30px;left:-30px;width:140px;height:80px;" viewBox="0 0 140 80">
+    <path d="M10,50 Q20,25 45,30 Q60,10 85,20 Q110,10 120,30 Q135,35 120,50 Q110,60 85,55 Q60,65 35,55 Q5,60 10,50Z" fill="var(--color-gold)"/>
+  </svg>
+  <svg class="deco-cloud" style="bottom:60px;right:-20px;width:120px;height:70px;opacity:0.04;" viewBox="0 0 140 80">
+    <path d="M10,50 Q20,25 45,30 Q60,10 85,20 Q110,10 120,30 Q135,35 120,50 Q110,60 85,55 Q60,65 35,55 Q5,60 10,50Z" fill="var(--color-gold-dark)"/>
+  </svg>
+
+  <div class="particles" id="particles-outpatient"></div>
+
+  <div class="anim-item page-label">门 诊 数 据</div>
+  <div class="anim-item page-heading">今年，你接诊了</div>
+
+  <div class="anim-item card" style="text-align:center; margin-bottom:24px;">
+    <div class="icon-badge" style="margin:0 auto 12px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/>
+        <circle cx="9" cy="7" r="4"/>
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87"/>
+        <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+      </svg>
+    </div>
+    <div class="big-number"><span class="count-up" data-target="3862">0</span><span class="big-unit">人次</span></div>
+    <div class="data-compare">
+      <span class="up">↑ 12.3%</span>
+      <span>较去年</span>
+    </div>
+    <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.6;">
+      相当于每天为 <strong style="color:var(--color-gold-dark);">11</strong> 位患者带去希望
+    </div>
+  </div>
+
+  <div class="anim-item stat-grid">
+    <div class="stat-item">
+      <div class="stat-value"><span class="count-up" data-target="1247">0</span></div>
+      <div class="stat-label">专家门诊</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value"><span class="count-up" data-target="2615">0</span></div>
+      <div class="stat-label">普通门诊</div>
+    </div>
+  </div>
+
+  <div class="anim-item emotion-text">"最忙的一天，你看了 48 位患者<br>——11月15日，周一"</div>
+</section>
+
+<!-- ===== PAGE 3: Surgery ===== -->
+<section class="page page-surgery" data-page="2" data-component="surgery-page">
+  <!-- Mountain decoration bottom -->
+  <svg class="deco-mountain" style="height:120px;opacity:0.03;" viewBox="0 0 375 120">
+    <path d="M0,120 Q40,80 80,70 Q120,50 160,60 Q200,30 240,50 Q280,40 320,60 Q350,70 375,55 L375,120 Z" fill="var(--color-gold-dark)"/>
+  </svg>
+
+  <div class="particles" id="particles-surgery"></div>
+
+  <div class="anim-item page-label">手 术 数 据</div>
+  <div class="anim-item page-heading">手术台上的守护</div>
+
+  <div class="anim-item card" style="text-align:center; margin-bottom:24px;">
+    <div class="icon-badge" style="margin:0 auto 12px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+      </svg>
+    </div>
+    <div class="big-number"><span class="count-up" data-target="486">0</span><span class="big-unit">台</span></div>
+    <div class="data-compare">
+      <span class="up">↑ 8.7%</span>
+      <span>较去年</span>
+    </div>
+    <div style="font-size:13px;color:var(--color-text-secondary);line-height:1.6;">
+      其中急诊手术 <strong style="color:var(--color-warm-red);">73</strong> 台，每一次都是与时间赛跑
+    </div>
+  </div>
+
+  <div class="anim-item highlight-bar">
+    <div class="bar-row">
+      <span class="bar-label">介入手术</span>
+      <div class="bar-track">
+        <div class="bar-fill" data-width="85%" style="background:var(--bar-gold);"></div>
+      </div>
+      <span class="bar-value">218</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">冠脉搭桥</span>
+      <div class="bar-track">
+        <div class="bar-fill" data-width="55%" style="background:var(--bar-gold-light);"></div>
+      </div>
+      <span class="bar-value">142</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">起搏器</span>
+      <div class="bar-track">
+        <div class="bar-fill" data-width="38%" style="background:var(--bar-sage);"></div>
+      </div>
+      <span class="bar-value">86</span>
+    </div>
+    <div class="bar-row">
+      <span class="bar-label">其他</span>
+      <div class="bar-track">
+        <div class="bar-fill" data-width="20%" style="background:var(--bar-ink);"></div>
+      </div>
+      <span class="bar-value">40</span>
+    </div>
+  </div>
+
+  <div class="anim-item emotion-text">"最长的一台手术持续了 9 小时 20 分<br>——你从未放弃"</div>
+</section>
+
+<!-- ===== PAGE 4: Bed Management ===== -->
+<section class="page page-beds" data-page="3" data-component="beds-page">
+  <svg class="deco-cloud" style="top:40px;right:-10px;width:130px;height:75px;" viewBox="0 0 140 80">
+    <path d="M10,50 Q20,25 45,30 Q60,10 85,20 Q110,10 120,30 Q135,35 120,50 Q110,60 85,55 Q60,65 35,55 Q5,60 10,50Z" fill="var(--color-sage)"/>
+  </svg>
+
+  <div class="particles" id="particles-beds"></div>
+
+  <div class="anim-item page-label">病 房 数 据</div>
+  <div class="anim-item page-heading">守护每一个床位</div>
+
+  <div class="anim-item card" style="text-align:center; margin-bottom:24px;">
+    <div class="icon-badge" style="margin:0 auto 12px;">
+      <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 7v11a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V7"/>
+        <path d="M3 14h18"/>
+        <path d="M7 14V7a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v7"/>
+      </svg>
+    </div>
+    <div class="big-number"><span class="count-up" data-target="1580">0</span><span class="big-unit">人次</span></div>
+    <div style="font-size:13px;color:var(--color-text-secondary);margin-top:8px;line-height:1.6;">
+      全年收治住院患者，床位使用率 <strong style="color:var(--color-jade);">96.2%</strong>
+    </div>
+  </div>
+
+  <div class="anim-item stat-grid">
+    <div class="stat-item">
+      <div class="stat-value"><span class="count-up" data-target="8.2">0</span><span style="font-size:14px;color:var(--color-text-tertiary);">天</span></div>
+      <div class="stat-label">平均住院日</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value"><span class="count-up" data-target="97.1" data-decimal="1">0</span><span style="font-size:14px;color:var(--color-text-tertiary);">%</span></div>
+      <div class="stat-label">治愈好转率</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value"><span class="count-up" data-target="3.8">0</span><span style="font-size:14px;color:var(--color-text-tertiary);">天</span></div>
+      <div class="stat-label">术前平均等待</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value"><span class="count-up" data-target="4.6">0</span><span style="font-size:14px;color:var(--color-text-tertiary);">分</span></div>
+      <div class="stat-label">患者满意度</div>
+    </div>
+  </div>
+
+  <div class="anim-item emotion-text">"出院时患者的一句谢谢<br>是最好的年终总结"</div>
+</section>
+
+<!-- ===== PAGE 5: Duty & Calendar ===== -->
+<section class="page page-duty" data-page="4" data-component="duty-page">
+  <svg class="deco-mountain" style="height:100px;opacity:0.03;" viewBox="0 0 375 100">
+    <path d="M0,100 Q60,60 100,50 Q140,30 180,45 Q220,20 260,40 Q300,30 340,50 Q360,55 375,45 L375,100 Z" fill="var(--color-ink)"/>
+  </svg>
+
+  <div class="particles" id="particles-duty"></div>
+
+  <div class="anim-item page-label">工 作 日 历</div>
+  <div class="anim-item page-heading">365天的坚守</div>
+
+  <div class="anim-item card" style="margin-bottom:16px;">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+      <div>
+        <div style="font-size:44px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums;color:var(--color-ink);">
+          <span class="count-up" data-target="256">0</span>
+        </div>
+        <div style="font-size:13px;color:var(--color-text-tertiary);margin-top:4px;">出勤天数</div>
+      </div>
+      <div style="text-align:right;">
+        <div style="font-size:26px;font-weight:700;color:var(--color-warm-red);">
+          <span class="count-up" data-target="42">0</span>
+        </div>
+        <div style="font-size:13px;color:var(--color-text-tertiary);margin-top:4px;">夜班数</div>
+      </div>
+    </div>
+
+    <div class="calendar-wrap">
+      <div class="cal-month-labels">
+        <span class="cal-month">1月</span><span class="cal-month">2月</span>
+        <span class="cal-month">3月</span><span class="cal-month">4月</span>
+        <span class="cal-month">5月</span><span class="cal-month">6月</span>
+        <span class="cal-month">7月</span><span class="cal-month">8月</span>
+        <span class="cal-month">9月</span><span class="cal-month">10月</span>
+        <span class="cal-month">11月</span><span class="cal-month">12月</span>
+      </div>
+      <div class="calendar-grid" id="calendarGrid">
+        <!-- 36 cells for 12 months x 3 rows -->
+      </div>
+    </div>
+  </div>
+
+  <div class="anim-item stat-grid">
+    <div class="stat-item">
+      <div class="stat-value" style="color:var(--color-gold-dark);"><span class="count-up" data-target="1892">0</span><span style="font-size:14px;color:var(--color-text-tertiary);">h</span></div>
+      <div class="stat-label">总工作时长</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value"><span class="count-up" data-target="36">0</span><span style="font-size:14px;color:var(--color-text-tertiary);">次</span></div>
+      <div class="stat-label">继续教育</div>
+    </div>
+  </div>
+
+  <div class="anim-item emotion-text">"最忙碌的月份是 3 月<br>——流感季，你选择了坚守"</div>
+</section>
+
+<!-- ===== PAGE 6: Ending ===== -->
+<section class="page page-ending" data-page="5" data-component="ending-page">
+  <!-- Large cloud decoration -->
+  <svg class="deco-cloud" style="top:20px;left:-40px;width:200px;height:120px;opacity:0.04;" viewBox="0 0 200 120">
+    <path d="M10,70 Q30,30 70,40 Q90,10 130,25 Q170,10 185,40 Q200,50 180,70 Q160,90 130,80 Q90,95 50,80 Q0,90 10,70Z" fill="var(--color-gold)"/>
+  </svg>
+  <svg class="deco-cloud" style="bottom:40px;right:-30px;width:180px;height:100px;opacity:0.03;" viewBox="0 0 200 120">
+    <path d="M10,70 Q30,30 70,40 Q90,10 130,25 Q170,10 185,40 Q200,50 180,70 Q160,90 130,80 Q90,95 50,80 Q0,90 10,70Z" fill="var(--color-gold-dark)"/>
+  </svg>
+  <!-- Mountain bottom -->
+  <svg class="deco-mountain" style="height:140px;opacity:0.03;" viewBox="0 0 375 140">
+    <path d="M0,140 Q30,100 70,85 Q110,60 150,75 Q190,40 230,60 Q270,45 310,70 Q340,80 375,65 L375,140 Z" fill="var(--color-gold-dark)"/>
+    <path d="M0,140 Q50,110 90,100 Q130,80 170,90 Q210,70 250,85 Q290,75 330,95 Q355,100 375,90 L375,140 Z" fill="var(--color-gold)" opacity="0.5"/>
+  </svg>
+
+  <div class="particles" id="particles-ending"></div>
+
+  <div class="anim-item ending-badge">
+    <svg viewBox="0 0 24 24" fill="none" style="stroke:var(--color-white)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/>
+    </svg>
+  </div>
+
+  <div class="anim-item ending-quote">
+    感谢你的每一份付出<br>
+    让生命更有温度
+  </div>
+
+  <div class="anim-item ending-sub">
+    2026 年，你用实际行动诠释了<br>
+    医者仁心的深刻含义<br>
+    愿你在新的一年里，继续发光发热
+  </div>
+
+  <div class="anim-item card" style="text-align:center;max-width:280px;">
+    <div style="font-size:12px;color:var(--color-text-tertiary);margin-bottom:14px;letter-spacing:3px;">年度关键词</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;">
+      <span class="keyword-tag keyword-tag--gold">勤勉</span>
+      <span class="keyword-tag keyword-tag--ink">精进</span>
+      <span class="keyword-tag keyword-tag--red">温暖</span>
+      <span class="keyword-tag keyword-tag--sage">担当</span>
+    </div>
+  </div>
+
+  <div class="anim-item" style="margin-top:28px;">
+    <button class="ending-share" onclick="alert('分享功能需对接后端服务')">
+      分享我的年度画像
+    </button>
+  </div>
+
+  <div class="anim-item ending-footer">
+    成都市新津区中医医院 · 职工360系统
+  </div>
+</section>
+
+</main>
+
+<script>
+(function() {
+  // ===== Particle Generator =====
+  const rootStyles = getComputedStyle(document.documentElement);
+  function cv(name) { return rootStyles.getPropertyValue(name).trim(); }
+
+  function createParticles(containerId, count, colorVars) {
+    const container = document.getElementById(containerId);
+    if (!container) return;
+    const colors = colorVars.map(cv);
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 5 + 2;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      p.style.cssText = `
+        width:${size}px;height:${size}px;
+        background:${color};
+        left:${Math.random() * 100}%;
+        animation-duration:${Math.random() * 8 + 6}s;
+        animation-delay:${Math.random() * 5}s;
+      `;
+      container.appendChild(p);
+    }
+  }
+
+  createParticles('particles-cover', 12, ['--color-gold','--color-gold-light','--color-gold-dark','--color-warm-red']);
+  createParticles('particles-outpatient', 10, ['--color-gold','--color-warm-red','--color-gold-dark']);
+  createParticles('particles-surgery', 10, ['--color-gold','--color-sage','--color-jade']);
+  createParticles('particles-beds', 10, ['--color-gold','--color-sage','--color-jade']);
+  createParticles('particles-duty', 8, ['--color-gold-dark','--color-gold','--color-ink']);
+  createParticles('particles-ending', 12, ['--color-gold','--color-warm-red','--color-gold-dark','--color-sage']);
+
+  // ===== Calendar Heatmap =====
+  const calGrid = document.getElementById('calendarGrid');
+  const monthIntensity = [0.4, 0.3, 0.9, 0.7, 0.5, 0.4, 0.3, 0.35, 0.5, 0.6, 0.7, 0.45];
+  if (calGrid) {
+    calGrid.innerHTML = '';
+    const goldColor = cv('--color-gold');
+    for (let row = 0; row < 3; row++) {
+      for (let m = 0; m < 12; m++) {
+        const cell = document.createElement('div');
+        cell.className = 'cal-cell';
+        const intensity = monthIntensity[m];
+        const alpha = 0.15 + intensity * 0.55;
+        cell.style.background = goldColor;
+        cell.style.opacity = alpha;
+        calGrid.appendChild(cell);
+      }
+    }
+  }
+
+  // ===== Intersection Observer for Animations =====
+  const pages = document.querySelectorAll('.page');
+  const dots = document.querySelectorAll('.indicator-dot');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const page = entry.target;
+        const pageIdx = parseInt(page.dataset.page);
+
+        // Update indicator
+        dots.forEach(d => d.classList.remove('active'));
+        if (dots[pageIdx]) dots[pageIdx].classList.add('active');
+
+        // Trigger animations
+        const items = page.querySelectorAll('.anim-item');
+        items.forEach((item, i) => {
+          setTimeout(() => item.classList.add('visible'), i * 120);
+        });
+
+        // Trigger count-up
+        const counters = page.querySelectorAll('.count-up');
+        counters.forEach(counter => {
+          if (counter.dataset.counted) return;
+          counter.dataset.counted = 'true';
+          animateCount(counter);
+        });
+
+        // Trigger bar fills
+        const bars = page.querySelectorAll('.bar-fill');
+        bars.forEach((bar, i) => {
+          setTimeout(() => {
+            bar.style.width = bar.dataset.width;
+          }, 300 + i * 150);
+        });
+      }
+    });
+  }, { threshold: 0.5 });
+
+  pages.forEach(p => observer.observe(p));
+
+  // Trigger cover animations on load
+  setTimeout(() => {
+    const coverItems = pages[0].querySelectorAll('.anim-item');
+    coverItems.forEach((item, i) => {
+      setTimeout(() => item.classList.add('visible'), i * 150);
+    });
+  }, 300);
+
+  // ===== Count-Up Animation =====
+  function animateCount(el) {
+    const target = parseFloat(el.dataset.target);
+    const hasDecimal = el.dataset.decimal || (target % 1 !== 0);
+    const duration = 1800;
+    const startTime = performance.now();
+
+    function update(currentTime) {
+      const elapsed = currentTime - startTime;
+      const progress = Math.min(elapsed / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      const current = target * eased;
+
+      if (hasDecimal) {
+        el.textContent = current.toFixed(1);
+      } else {
+        el.textContent = Math.floor(current).toLocaleString();
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(update);
+      } else {
+        if (hasDecimal) {
+          el.textContent = target.toFixed(1);
+        } else {
+          el.textContent = target.toLocaleString();
+        }
+      }
+    }
+    requestAnimationFrame(update);
+  }
+})();
+</script>
+</body>
+</html>
